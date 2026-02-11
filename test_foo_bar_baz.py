@@ -45,4 +45,4 @@ def test_incorrect():
 
 # Incorrect test
 def test_bad():
-    assert (foo_bar_baz(5) == "1 2 3 4 5") != True
+    assert foo_bar_baz(5) == "1 2 3 4 5"
