@@ -9,6 +9,15 @@ def test_2():
 def test_3():
     assert foo_bar_baz(3) == "1 2 Foo"
 
+def test_4():
+    assert foo_bar_baz(4) == "1 2 Foo 4"
+
+def test_6():
+    assert foo_bar_baz(6) == "1 2 Foo 4 Bar Foo"
+
+def test_9():
+    assert foo_bar_baz(9) == "1 2 Foo 4 Bar Foo 7 8 Foo"
+
 def test_15():
     assert foo_bar_baz(15) == "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz"
 
@@ -19,9 +28,18 @@ def test_15():
     (12, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo"),
     (14, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14"),
     (18, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo"),
+    (19, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19"),
     (20, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar"),
     (21, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo"),
     (22, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22"),
+    (23, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23"),
+    (24, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23 Foo"),
+    (25, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23 Foo Bar"),
+    (26, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23 Foo Bar 26"),
+    (27, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23 Foo Bar 26 Foo"),
+    (28, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23 Foo Bar 26 Foo 28"),
+    (29, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23 Foo Bar 26 Foo 28 29"),
+    (30, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23 Foo Bar 26 Foo 28 29 Baz"),
 ])
 
 def test_lots(n, expected):
@@ -38,11 +56,16 @@ def test_0():
 def test_1():
     assert foo_bar_baz(1) == "1"
 
-
 # Incorrect implementation
 def test_incorrect():
     assert foo_bar_baz(10) != "1 2 3 4 5 6 7 8 9 10"
 
+def test_format():
+    assert foo_bar_baz(1) != 1
+
+def test_format_concatenated():
+    assert foo_bar_baz(10) != 12345678910
+
 # Incorrect test
 def test_bad():
-    assert foo_bar_baz(5) == "1 2 3 4 5"
+    assert (foo_bar_baz(5) == "1 2 3 4 5") != True
