@@ -1,10 +1,10 @@
 import pytest
 import sys
 
-from foo_bar_baz import foo_bar_baz
-
 # Normal test cases
 def test_basic():
+    from foo_bar_baz import foo_bar_baz
+
     assert foo_bar_baz(2) == "1 2"
     assert foo_bar_baz(3) == "1 2 Foo"
     assert foo_bar_baz(4) == "1 2 Foo 4"
@@ -17,6 +17,8 @@ def test_basic():
     assert foo_bar_baz(15) == "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz"
 
 def test_existence():
+    from foo_bar_baz import foo_bar_baz
+
     assert "Foo" in foo_bar_baz(10)
     assert "Baz" in foo_bar_baz(20)
 
@@ -49,6 +51,8 @@ def test_existence():
 
 # Edge test cases
 def test_edge_cases():
+    from foo_bar_baz import foo_bar_baz
+
     assert foo_bar_baz(-100) == ""
     assert foo_bar_baz(-1) == ""
 
@@ -57,6 +61,8 @@ def test_edge_cases():
     assert foo_bar_baz(1) == "1"
 
 def test_incorrect():
+    from foo_bar_baz import foo_bar_baz
+
     assert foo_bar_baz(10) != "1 2 3 4 5 6 7 8 9 10"
 
     assert foo_bar_baz(1) != 1
@@ -67,6 +73,8 @@ def test_incorrect():
 
 # Correct Output Type
 def test_output():
+    from foo_bar_baz import foo_bar_baz
+
     assert isinstance(foo_bar_baz(0), str)
     assert isinstance(foo_bar_baz(10), str)
     assert isinstance(foo_bar_baz(100), str)
@@ -75,6 +83,8 @@ def test_output():
 
 # Wrong Input Type
 def test_wrong_input():
+    from foo_bar_baz import foo_bar_baz
+
     with pytest.raises(TypeError):
         foo_bar_baz(9.5) 
 
@@ -85,18 +95,21 @@ def test_wrong_input():
         foo_bar_baz("Cheese") 
 
 # Counts
-def test_up_to_100():
+def test_up_to():
+    from foo_bar_baz import foo_bar_baz
+
     output = foo_bar_baz(100)
     assert output.count("Bar") == 14
     assert output.count("Baz") == 6
 
-def test_up_to_20():
     output = foo_bar_baz(20)
     assert output.count("Baz") == 1
     assert output.count("Bar") == 3
     assert output.count("Foo") == 5
 
 def test_neg_max_size():
+    from foo_bar_baz import foo_bar_baz
+    
     assert foo_bar_baz(-sys.maxsize) == "" # sadly max size is a little too big
 
 # import pytest
