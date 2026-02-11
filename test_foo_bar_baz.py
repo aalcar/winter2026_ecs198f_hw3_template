@@ -37,3 +37,12 @@ def test_0():
 
 def test_1():
     assert foo_bar_baz(1) == "1"
+
+
+# Incorrect implementation
+def test_incorrect():
+    assert foo_bar_baz(10) != "1 2 3 4 5 6 7 8 9 10"
+
+# Incorrect test
+def test_bad():
+    assert (foo_bar_baz(5) == "1 2 3 4 5") != True
