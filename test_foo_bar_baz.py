@@ -25,29 +25,31 @@ def test_existence():
     for i in range(4):
         assert "Bar" not in foo_bar_baz(i)
 
-# @pytest.mark.parametrize("n, expected", [
-#     (5, "1 2 Foo 4 Bar"),
-#     (7, "1 2 Foo 4 Bar Foo 7"),
-#     (10, "1 2 Foo 4 Bar Foo 7 8 Foo Bar"),
-#     (12, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo"),
-#     (14, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14"),
-#     (18, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo"),
-#     (19, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19"),
-#     (20, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar"),
-#     (21, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo"),
-#     (22, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22"),
-#     (23, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23"),
-#     (24, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23 Foo"),
-#     (25, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23 Foo Bar"),
-#     (26, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23 Foo Bar 26"),
-#     (27, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23 Foo Bar 26 Foo"),
-#     (28, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23 Foo Bar 26 Foo 28"),
-#     (29, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23 Foo Bar 26 Foo 28 29"),
-#     (30, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23 Foo Bar 26 Foo 28 29 Baz"),
-# ])
+@pytest.mark.parametrize("n, expected", [
+    (5, "1 2 Foo 4 Bar"),
+    (7, "1 2 Foo 4 Bar Foo 7"),
+    (10, "1 2 Foo 4 Bar Foo 7 8 Foo Bar"),
+    (12, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo"),
+    (14, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14"),
+    (18, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo"),
+    (19, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19"),
+    (20, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar"),
+    (21, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo"),
+    (22, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22"),
+    (23, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23"),
+    (24, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23 Foo"),
+    (25, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23 Foo Bar"),
+    (26, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23 Foo Bar 26"),
+    (27, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23 Foo Bar 26 Foo"),
+    (28, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23 Foo Bar 26 Foo 28"),
+    (29, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23 Foo Bar 26 Foo 28 29"),
+    (30, "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz 16 17 Foo 19 Bar Foo 22 23 Foo Bar 26 Foo 28 29 Baz"),
+])
 
-# def test_lots(n, expected):
-#     assert foo_bar_baz(n) == expected
+def test_lots(n, expected):
+    from foo_bar_baz import foo_bar_baz
+
+    assert foo_bar_baz(n) == expected
 
 # Edge test cases
 def test_edge_cases():
@@ -109,7 +111,7 @@ def test_up_to():
 
 def test_neg_max_size():
     from foo_bar_baz import foo_bar_baz
-    
+
     assert foo_bar_baz(-sys.maxsize) == "" # sadly max size is a little too big
 
 # import pytest
