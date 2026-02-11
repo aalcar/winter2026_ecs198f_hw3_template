@@ -1,4 +1,5 @@
 import pytest
+import sys
 
 from foo_bar_baz import foo_bar_baz
 
@@ -20,6 +21,14 @@ def test_9():
 
 def test_15():
     assert foo_bar_baz(15) == "1 2 Foo 4 Bar Foo 7 8 Foo Bar 11 Foo 13 14 Baz"
+
+def test_exist():
+    assert "Foo" in foo_bar_baz(10)
+    assert "Baz" in foo_bar_baz(20)
+
+def test_not_exist():
+    for i in range(4):
+        assert "Bar" not in foo_bar_baz(i)
 
 @pytest.mark.parametrize("n, expected", [
     (5, "1 2 Foo 4 Bar"),
@@ -69,3 +78,37 @@ def test_format_concatenated():
 # Incorrect test
 def test_bad():
     assert (foo_bar_baz(5) == "1 2 3 4 5") != True
+
+# Correct Output Type
+def test_output():
+    assert isinstance(foo_bar_baz(0), str)
+    assert isinstance(foo_bar_baz(10), str)
+    assert isinstance(foo_bar_baz(100), str)
+    assert isinstance(foo_bar_baz(-1), str)
+    assert isinstance(foo_bar_baz(-10), str)
+
+# Wrong Input Type
+def test_wrong_input():
+    with pytest.raises(TypeError):
+        foo_bar_baz(9.5) 
+
+    with pytest.raises(TypeError):
+        foo_bar_baz(tuple) 
+
+    with pytest.raises(TypeError):
+        foo_bar_baz("Cheese") 
+
+# Counts
+def test_up_to_100():
+    output = foo_bar_baz(100)
+    assert output.count("Bar") == 14
+    assert output.count("Baz") == 6
+
+def test_up_to_20():
+    output = foo_bar_baz(20)
+    assert output.count("Baz") == 1
+    assert output.count("Bar") == 3
+    assert output.count("Foo") == 5
+
+def test_neg_max_size():
+    assert foo_bar_baz(-sys.maxsize) == "" # sadly max size is a little too big
